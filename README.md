@@ -1,167 +1,260 @@
-# 🤖 AiTasker - Nền Tảng Tìm Kiếm Việc Làm Tự Do Tích Hợp Trợ Lý AI
+# AiTasker — Nền Tảng Freelance Tích Hợp AI
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.0-brightgreen.svg)](https://spring.io/projects/spring-boot)
-[![React](https://img.shields.io/badge/React-19.2.6-blue.svg)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-8.0.12-purple.svg)](https://vite.dev/)
-[![MySQL](https://img.shields.io/badge/MySQL-8.0-blue.svg)](https://www.mysql.com/)
+[![React](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8-purple.svg)](https://vite.dev/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-orange.svg)](https://www.mysql.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**AiTasker** là một nền tảng tuyển dụng và kết nối việc làm tự do (Freelancer) đột phá, được thiết kế chuyên biệt cho thị trường Việt Nam. Khác biệt với các nền tảng truyền thống, **AiTasker** tích hợp sâu các công nghệ **Trí Tuệ Nhân Tạo (AI)** tiên tiến để tối ưu hóa quy trình làm việc giữa **Client (Nhà tuyển dụng)** và **Expert/Tasker (Chuyên gia/Người nhận việc)**. Dự án được phát triển theo cấu trúc hiện đại gồm 3 phân hệ chính: Trang giới thiệu (Landing Page), Trang ứng dụng khách hàng (Frontend React) và Hệ thống dịch vụ máy chủ (Backend Spring Boot).
+**AiTasker** là nền tảng kết nối **Client (nhà tuyển dụng)** và **Expert (chuyên gia tự do)** được xây dựng theo kiến trúc fullstack hiện đại. Điểm khác biệt cốt lõi là tích hợp trực tiếp **Google Gemini AI** vào quy trình đăng việc, gợi ý ứng viên và sinh nội dung dịch vụ — cùng hệ thống thanh toán ký quỹ (Escrow) an toàn qua **Stripe** và trò chuyện thời gian thực qua **WebSocket**.
 
 ---
 
-## 🌟 Tính Năng Nổi Bật
+## Mục Lục
 
-### 1. Phân Hệ Người Dùng & Quản Trị
-*   **Trang Giới Thiệu (Landing Page):** Thiết kế giao diện hiện đại, tối ưu hóa SEO, tích hợp hiệu ứng chuyển động mượt mà, giới thiệu đầy đủ các dịch vụ tiêu biểu và quy trình hoạt động của hệ thống.
-*   **Quản Lý Tài Khoản & Bảo Mật:** Hệ thống phân quyền chặt chẽ 3 vai trò chính:
-    *   **Client (Nhà tuyển dụng):** Đăng tuyển công việc, duyệt báo giá (Proposal), quản lý tiến độ (Milestone), thanh toán ký quỹ, đánh giá Expert.
-    *   **Expert/Tasker (Chuyên gia tự do):** Tạo hồ sơ năng lực, thiết lập gói dịch vụ (Service Listings), gửi báo giá cạnh tranh cho các dự án, cập nhật tiến độ công việc, yêu cầu thanh toán và rút tiền về tài khoản ngân hàng.
-    *   **Admin (Quản trị viên):** Quản lý toàn bộ danh sách người dùng, phê duyệt và hòa giải tranh chấp (Disputes), kiểm soát dòng tiền ký quỹ, theo dõi thống kê doanh thu và báo cáo hệ thống.
-
-### 2. Trí Tuệ Nhân Tạo (AI Co-pilot) Tích Hợp
-*   **AI Job Assistant:** Trợ lý hỗ trợ Client chuẩn hóa bài đăng tuyển dụng. Tự động sửa lỗi chính tả, tối ưu cấu trúc nội dung, gợi ý mức ngân sách phù hợp và tự động gắn thẻ kỹ năng (Skills Tagging).
-*   **AI Service Generator:** Giúp Expert tự động sinh mô tả chi tiết, đề xuất lộ trình triển khai công việc và tối ưu hóa từ khóa SEO cho các gói dịch vụ cá nhân dựa trên tiêu đề và mức giá mong muốn.
-*   **AI Recommendation System:** Thuật toán thông minh tự động phân tích hồ sơ năng lực, đánh giá kỹ năng của Expert để đề xuất danh sách ứng viên phù hợp nhất ngay khi Client vừa đăng tải công việc.
-
-### 3. Quy Trình Thanh Toán & Giao Dịch An Toàn (Escrow Payment)
-*   **Thanh Toán Ký Quỹ (Escrow):** Client thanh toán trước chi phí dự án vào tài khoản trung gian của hệ thống. Tiền chỉ được chuyển cho Expert khi Client xác nhận nghiệm thu kết quả công việc.
-*   **Quản Lý Cột Mốc (Milestones):** Hỗ trợ chia dự án thành nhiều giai đoạn nhỏ với các cột mốc thanh toán riêng biệt, giúp giảm thiểu rủi ro cho cả hai bên.
-*   **Rút Tiền & Hòa Giải (Withdrawal & Dispute):** Quy trình xử lý yêu cầu rút tiền tự động cho Expert và cơ chế gửi yêu cầu tranh chấp trực tiếp đến Admin khi có bất đồng xảy ra.
-
-### 4. Giao Tiếp Thời Gian Thực (Realtime Messaging)
-*   **Hệ Thống Trò Chuyện Trực Tuyến:** Xây dựng trên nền tảng **WebSocket (Stomp/SockJS)** giúp Client và Expert trò chuyện trực tiếp với độ trễ cực thấp.
-*   **Đính Kèm Tài Liệu:** Hỗ trợ gửi tệp đính kèm (hồ sơ, báo cáo, sản phẩm demo) trực tiếp qua cửa sổ trò chuyện.
+- [Tính năng chính](#tính-năng-chính)
+- [Công nghệ sử dụng](#công-nghệ-sử-dụng)
+- [Cấu trúc dự án](#cấu-trúc-dự-án)
+- [Cài đặt & Chạy thử](#cài-đặt--chạy-thử)
+- [Tài khoản demo](#tài-khoản-demo)
+- [Tài liệu API](#tài-liệu-api)
+- [Phân công nhóm](#phân-công-nhóm)
 
 ---
 
-## 🛠️ Công Nghệ Sử Dụng
+## Tính Năng Chính
 
-### 💻 Frontend & Landing Page
-*   **React 19 & Vite 8:** Khởi tạo dự án siêu tốc, xây dựng SPA (Single Page Application) mượt mà, hiệu năng tối đa.
-*   **React Router DOM 7:** Quản lý định tuyến trang chặt chẽ, tối ưu phân quyền trang Dashboard/Admin.
-*   **Vanilla CSS:** Thiết kế giao diện Glassmorphism thời thượng, tối ưu responsive 100% trên các thiết bị, sử dụng hệ thống biến CSS chuyên nghiệp.
-*   **Axios & JWT Decode:** Giao tiếp API an toàn qua cơ chế Interceptor và lưu trữ mã hóa token.
-*   **React Hot Toast:** Hệ thống thông báo người dùng bắt mắt, tương tác trực quan.
+### Xác thực & Phân quyền
+- Đăng ký / đăng nhập với JWT stateless
+- 3 vai trò: **CLIENT**, **EXPERT**, **ADMIN**
+- Bảo vệ endpoint theo role, khóa tài khoản vi phạm
 
-### ⚙️ Backend & Database
-*   **Java 17 & Spring Boot 3.3.0:** Khung phát triển ứng dụng phía máy chủ mạnh mẽ, bảo mật cao.
-*   **Spring Security & JSON Web Token (JWT):** Hệ thống bảo mật Stateful/Stateless xác thực đa tầng, bảo vệ tài nguyên API khỏi các truy cập trái phép.
-*   **Spring Data JPA (Hibernate):** Truy vấn và quản trị cơ sở dữ liệu quan hệ tối ưu qua ORM.
-*   **Spring WebSocket:** Kết nối hai chiều thời gian thực phục vụ trò chuyện trực tuyến.
-*   **MySQL 8.0:** Hệ quản trị cơ sở dữ liệu quan hệ ổn định và an toàn lưu trữ toàn bộ thông tin hệ thống.
-*   **Springdoc OpenAPI (Swagger 3):** Tự động sinh tài liệu mô tả đặc tả API phục vụ phát triển và kiểm thử.
+### Quản lý Công Việc & Ứng Tuyển
+- Client đăng job (FIXED / HOURLY), tìm kiếm và lọc theo kỹ năng
+- Expert nộp proposal với giá và timeline đề xuất
+- Client chấp nhận proposal → tự động tạo Project
+
+### Quản lý Dự Án & Milestone
+- Chia dự án thành nhiều milestone với trạng thái riêng
+- Expert nộp deliverables → Client duyệt / yêu cầu chỉnh sửa
+- Milestone được duyệt → tự động giải ngân từ escrow
+
+### Thanh Toán Escrow (Stripe)
+- Client nạp tiền vào tài khoản ký quỹ qua Stripe
+- Tiền giữ đến khi milestone được nghiệm thu
+- Expert rút tiền về ngân hàng, Admin phê duyệt
+- Stripe Webhook xử lý sự kiện thanh toán thời gian thực
+
+### Trợ Lý AI (Google Gemini)
+- **AI Job Assistant**: tối ưu mô tả job, gợi ý ngân sách, gắn tag kỹ năng tự động
+- **AI Service Generator**: sinh mô tả dịch vụ cho Expert từ tiêu đề và giá
+- **AI Recommendation**: gợi ý Expert phù hợp dựa trên kỹ năng và job requirements
+
+### Giao Tiếp Thời Gian Thực
+- Chat WebSocket (STOMP/SockJS) trong từng Project
+- Hệ thống thông báo realtime cho các sự kiện quan trọng
+- Lịch sử tin nhắn lưu trên MySQL
+
+### Admin Dashboard
+- Thống kê doanh thu, số lượng user, project, giao dịch
+- Quản lý người dùng: khóa/mở khóa tài khoản
+- Xử lý tranh chấp (Dispute) giữa Client và Expert
+- Phê duyệt yêu cầu rút tiền của Expert
 
 ---
 
-## 📂 Cấu Trúc Thư Mục Dự Án
+## Công Nghệ Sử Dụng
 
-```text
+| Layer | Công nghệ |
+|-------|-----------|
+| Frontend | React 19, Vite 8, React Router DOM 7, Axios, SockJS + StompJS |
+| Styling | Vanilla CSS (Glassmorphism), CSS Variables, Responsive |
+| Backend | Java 17, Spring Boot 3.3.0, Spring Security, Spring Data JPA |
+| Auth | JWT (JJWT 0.12.5), BCrypt |
+| Database | MySQL 8.0, Hibernate ORM |
+| Payment | Stripe API (PaymentIntent, Webhook, Payout) |
+| AI | Google Gemini API |
+| Realtime | Spring WebSocket, STOMP Broker |
+| API Docs | Springdoc OpenAPI 3 (Swagger UI) |
+| Build | Maven (backend), npm (frontend) |
+
+---
+
+## Cấu Trúc Dự Án
+
+```
 AlTasker/
-├── backend/                  # Phân hệ Backend (Spring Boot Maven)
-│   ├── src/main/java/        # Mã nguồn Java chính
-│   │   └── com/aitasker/     # Package gốc chứa các controller, service, entity, dto
-│   └── src/main/resources/   # File cấu hình ứng dụng (application.yml, schema sql)
-├── frontend/                 # Phân hệ Frontend (React SPA + Vite)
-│   ├── src/                  # Mã nguồn React (components, pages, services, assets)
-│   └── index.html            # Trang HTML chính của SPA
-├── landingpage/              # Phân hệ Landing Page giới thiệu dự án
-│   ├── index.html            # File cấu trúc giao diện tĩnh
-│   ├── style.css             # Định dạng giao diện độc lập
-│   └── script.js             # Logic hoạt động của Landing Page
-├── .gitignore                # Quản lý các thư mục/file không đẩy lên Git
-└── README.md                 # Tài liệu hướng dẫn đồ án (File này)
+├── backend/                        # Spring Boot (Maven)
+│   └── src/main/java/com/aitasker/
+│       ├── config/                 # SecurityConfig, AppConfig, StripeConfig, WebSocketConfig
+│       ├── controller/             # REST & WebSocket controllers
+│       ├── dto/                    # Request/Response DTOs
+│       ├── entity/                 # JPA entities
+│       ├── enums/                  # UserRole, JobStatus, PaymentStatus, ...
+│       ├── exception/              # AppException, GlobalExceptionHandler
+│       ├── repository/             # Spring Data JPA repositories
+│       ├── security/               # JwtTokenProvider, JwtAuthFilter, CustomUserDetailsService
+│       └── service/                # Business logic services
+│
+├── frontend/                       # React SPA (Vite)
+│   └── src/
+│       ├── api/                    # axios.js (interceptor)
+│       ├── components/layout/      # Navbar, Footer
+│       ├── context/                # AuthContext.jsx
+│       └── pages/                  # Login, Register, Dashboard, ProjectDetail, ...
+│
+├── landingpage/                    # Static landing page (HTML/CSS/JS)
+│
+├── docs/
+│   └── uml/                        # PlantUML diagrams (.puml) theo từng module
+│       ├── tv1-auth/
+│       ├── tv2-user/
+│       ├── tv3-jobpost/
+│       ├── tv4-project/
+│       ├── tv5-payment/
+│       ├── tv6-chat/
+│       └── tv7-ai-admin/
+│
+├── PHAN_CONG_NHOM.md
+└── README.md
 ```
 
 ---
 
-## 🚀 Hướng Dẫn Cài Đặt & Chạy Thử Dự Án
+## Cài Đặt & Chạy Thử
 
-### 📋 Yêu Cầu Hệ Thống Trước Khi Cài Đặt
-*   **Java Development Kit (JDK):** Phiên bản **17** trở lên.
-*   **Node.js:** Phiên bản **18** hoặc **20** trở lên (Khuyến nghị sử dụng LTS).
-*   **Cơ Sở Dữ Liệu:** **MySQL Server** phiên bản **8.0** trở lên.
-*   **Trình Quản Lý Gói:** **npm** đi kèm với Node.js.
-
----
-
-### Bước 1: Khởi Tạo Cơ Sở Dữ Liệu MySQL
-1. Mở MySQL Workbench hoặc Terminal và chạy câu lệnh sau để tạo database trống:
-   ```sql
-   CREATE DATABASE aitasker_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-   ```
-2. Cấu hình thông tin tài khoản MySQL của bạn trong file: `backend/src/main/resources/application.yml` (nếu cần thay đổi tên đăng nhập hoặc mật khẩu mặc định):
-   ```yaml
-   spring:
-     datasource:
-       url: jdbc:mysql://localhost:3306/aitasker_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
-       username: root
-       password: your_mysql_password
-   ```
+### Yêu cầu hệ thống
+- **JDK 17+**
+- **Node.js 18+** (LTS)
+- **MySQL 8.0+**
+- **Maven 3.8+**
 
 ---
 
-### Bước 2: Khởi Chạy Backend (Spring Boot)
-1. Di chuyển vào thư mục backend:
-   ```bash
-   cd backend
-   ```
-2. Chạy lệnh để biên dịch và khởi chạy server thông qua Maven:
-   ```bash
-   mvn spring-boot:run
-   ```
-3. Sau khi khởi động thành công, hệ thống backend sẽ chạy tại cổng **8080** (`http://localhost:8080`).
-4. **Lưu ý quan trọng:** Hệ thống đã được tích hợp sẵn **DataSeeder**. Trong lần chạy đầu tiên khi database trống, hệ thống sẽ tự động gieo dữ liệu demo bao gồm: **4 người dùng mặc định**, **3 bài đăng tuyển**, **2 báo giá**, **2 dự án hoạt động**, **5 cột mốc tiến độ**, **2 giao dịch thanh toán**, và **3 dịch vụ đăng sẵn**.
+### Bước 1 — Tạo database
+
+```sql
+CREATE DATABASE aitasker_db
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+```
 
 ---
 
-### Bước 3: Khởi Chạy Frontend (React SPA)
-1. Di chuyển vào thư mục frontend:
-   ```bash
-   cd ../frontend
-   ```
-2. Cài đặt toàn bộ các thư viện dependency cần thiết:
-   ```bash
-   npm install
-   ```
-3. Khởi động môi trường phát triển (Development Server):
-   ```bash
-   npm run dev
-   ```
-4. Sau khi khởi động thành công, trình duyệt sẽ mở ứng dụng tại cổng **5173** (`http://localhost:5173`).
+### Bước 2 — Cấu hình backend
+
+Mở file `backend/src/main/resources/application.yml` và điều chỉnh:
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/aitasker_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: your_password
+
+app:
+  jwt:
+    secret: your_jwt_secret_key
+    expiration: 86400000   # 24 giờ (ms)
+
+stripe:
+  secret-key: sk_test_...
+  webhook-secret: whsec_...
+
+gemini:
+  api-key: AIza...
+```
 
 ---
 
-### Bước 4: Khởi Chạy Trang Giới Thiệu (Landing Page)
-*   Đối với trang landingpage tĩnh, bạn chỉ cần nhấp đúp trực tiếp vào file `landingpage/index.html` để mở trên trình duyệt hoặc sử dụng extension như **Live Server** trên VS Code để chạy dưới dạng máy chủ cục bộ.
+### Bước 3 — Chạy Backend
+
+```bash
+cd backend
+mvn spring-boot:run
+```
+
+Server khởi động tại `http://localhost:8080`.
+
+> **DataSeeder** tự động chạy lần đầu khi database trống, tạo sẵn người dùng, job posts, proposals, projects, milestones và service listings mẫu.
 
 ---
 
-## 🔑 Tài Khoản Thử Nghiệm Hệ Thống (Demo Accounts)
+### Bước 4 — Chạy Frontend
 
-Để thuận tiện cho việc kiểm thử và chấm đồ án, hệ thống đã chuẩn bị sẵn các tài khoản demo sau đây:
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-| 👤 Vai Trò (Role) | ✉️ Địa Chỉ Email | 🔑 Mật Khẩu (Password) | 💡 Ghi Chú |
-| :--- | :--- | :--- | :--- |
-| **Admin** | `admin@aitasker.com` | `123456` | Toàn quyền kiểm soát, quản lý tranh chấp & phê duyệt thanh toán. |
-| **Client** | `client@aitasker.com` | `123456` | Đại diện cho Doanh nghiệp / Người thuê dịch vụ AI. |
-| **Expert 1** | `expert@aitasker.com` | `123456` | Chuyên gia AI tự do chuyên phát triển Chatbot. |
-| **Expert 2** | `expert2@aitasker.com` | `123456` | Chuyên gia AI tự do chuyên về Xử lý Ngôn ngữ Tự nhiên (NLP). |
-
-### 🛠️ Cách truy cập trang Quản Trị (Admin Dashboard):
-1. Truy cập `http://localhost:5173/login`.
-2. Đăng nhập bằng tài khoản Admin: `admin@aitasker.com` / `123456`.
-3. Sau khi đăng nhập thành công, bạn sẽ được tự động chuyển hướng hoặc bạn có thể truy cập trực tiếp địa chỉ: `http://localhost:5173/admin` để kiểm soát dữ liệu.
+Ứng dụng chạy tại `http://localhost:5173`.
 
 ---
 
-## 🔗 Tài Liệu Tham Khảo API (API Documentation)
-Hệ thống sử dụng Swagger UI giúp bạn dễ dàng tra cứu, kiểm thử các API được cung cấp bởi Backend. Khi backend đang chạy, truy cập đường dẫn sau để xem tài liệu API chi tiết:
-📌 **[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)**
+### Bước 5 — Xem Landing Page
+
+Mở trực tiếp `landingpage/index.html` trên trình duyệt hoặc dùng **Live Server** (VS Code extension).
 
 ---
 
-## 🛡️ Giấy Phép & Đóng Góp
-Dự án được bảo hộ và phân phối dưới giấy phép **MIT License**. Mọi đóng góp xây dựng nâng cấp hệ thống xin vui lòng liên hệ ban phát triển dự án hoặc tạo **Pull Request** trực tiếp trên kho lưu trữ Github.
+## Tài Khoản Demo
 
-*Chúc ban giám khảo và quý thầy cô có trải nghiệm tuyệt vời khi chấm điểm dự án!* 🌟
+| Vai trò | Email | Mật khẩu | Ghi chú |
+|---------|-------|-----------|---------|
+| Admin | `admin@aitasker.com` | `123456` | Quản trị toàn hệ thống |
+| Client | `client@aitasker.com` | `123456` | Đăng job, quản lý dự án |
+| Expert 1 | `expert@aitasker.com` | `123456` | Chuyên gia AI / Chatbot |
+| Expert 2 | `expert2@aitasker.com` | `123456` | Chuyên gia NLP |
+
+**Truy cập Admin Dashboard:** Đăng nhập với tài khoản Admin → `http://localhost:5173/admin`
+
+---
+
+## Tài Liệu API
+
+Swagger UI khả dụng khi backend đang chạy:
+
+```
+http://localhost:8080/swagger-ui/index.html
+```
+
+Các nhóm endpoint chính:
+
+| Prefix | Mô tả |
+|--------|-------|
+| `/api/auth/**` | Đăng ký, đăng nhập |
+| `/api/users/**` | Profile, danh sách expert |
+| `/api/job-posts/**` | Đăng và tìm kiếm việc làm |
+| `/api/proposals/**` | Nộp và quản lý proposal |
+| `/api/projects/**` | Quản lý dự án |
+| `/api/milestones/**` | Tạo, nộp, duyệt milestone |
+| `/api/payments/**` | Thanh toán escrow |
+| `/api/stripe/**` | Stripe PaymentIntent, refund, payout |
+| `/api/withdrawals/**` | Rút tiền |
+| `/api/ai/**` | Tính năng AI (Gemini) |
+| `/api/admin/**` | Quản trị hệ thống |
+| `/api/services/**` | Service listings của expert |
+| `/ws/**` | WebSocket endpoint (chat) |
+
+---
+
+## Phân Công Nhóm
+
+| Thành viên | Module | Nhánh Git |
+|------------|--------|-----------|
+| TV1 | Auth & Security (JWT, Spring Security) | `feature/tv1-auth` |
+| TV2 | User Management & Profile | `feature/tv2-user` |
+| TV3 | JobPost & Proposal | `feature/tv3-jobpost` |
+| TV4 | Project & Milestone | `feature/tv4-project` |
+| TV5 | Payment, Stripe & Withdrawal | `feature/tv5-payment` |
+| TV6 | Chat, Notification & Review | `feature/tv6-chat` |
+| TV7 | AI Module, Admin & ServiceListing | `feature/tv7-ai-admin` |
+
+Chi tiết phân công, commit guideline và UML requirements xem tại [`PHAN_CONG_NHOM.md`](./PHAN_CONG_NHOM.md).
+
+---
+
+## Giấy Phép
+
+Dự án phân phối dưới [MIT License](LICENSE).
